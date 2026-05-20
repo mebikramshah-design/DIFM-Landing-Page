@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Darwish Interserve FM | Integrated Facility Management in Qatar</title>
+  <meta name="description" content="Darwish Interserve Facility Management delivers integrated Hard FM, Soft FM, MEP, cleaning, security and manpower solutions across Qatar. Reliable. Professional. 24/7." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      background: #ffffff;
+      color: #002a38;
+      -webkit-font-smoothing: antialiased;
+      font-feature-settings: "cv02","cv03","cv04","cv11";
+    }
+    h1,h2,h3,h4 { font-weight: 600; letter-spacing: -0.02em; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    input,select,textarea,button { font-family: inherit; }
+    img { display: block; max-width: 100%; }
+
+    /* ── Color Variables ── */
+    :root {
+      --navy:  #002a38;
+      --deep:  #003d52;
+      --steel: #005f80;
+      --primary: #00afd7;
+      
+      --ivory: #e8f9fd;
+      --shadow-card: 0 10px 30px -10px rgba(0,42,56,0.25);
+    }
+
+    /* ── Layout ── */
+    .container-x {
+      margin: 0 auto;
+      width: 100%;
+      max-width: 1280px;
+      padding: 0 1.25rem;
+    }
+    @media (min-width: 640px) { .container-x { padding: 0 2rem; } }
+
+    /* ── Buttons ── */
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 0.5rem; border-radius: 9999px;
+      background: var(--primary); padding: 0.75rem 1.5rem;
+      font-size: 0.875rem; font-weight: 600; color: var(--navy);
+      box-shadow: var(--shadow-card);
+      transition: background 0.15s; border: none; cursor: pointer;
+    }
+    .btn-primary:hover { background: #00c4f0; }
+    .btn-secondary {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 0.5rem; border-radius: 9999px;
+      border: 1px solid rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.05); padding: 0.75rem 1.5rem;
+      font-size: 0.875rem; font-weight: 600; color: #fff;
+      backdrop-filter: blur(6px); transition: background 0.15s; cursor: pointer;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 0.5rem; border-radius: 9999px;
+      border: 1px solid rgba(0,42,56,0.15); background: #fff;
+      padding: 0.75rem 1.5rem; font-size: 0.875rem; font-weight: 600;
+      color: var(--navy); transition: all 0.15s; cursor: pointer;
+    }
+    .btn-ghost:hover { border-color: rgba(0,42,56,0.3); background: var(--ivory); }
+
+    /* ── Typography helpers ── */
+    .section-title { font-size: clamp(1.75rem, 4vw, 2.25rem); font-weight: 600; color: var(--navy); }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.75rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.18em; color: var(--primary);
+    }
+
+    /* ── Form fields ── */
+    .field-label {
+      display: block; margin-bottom: 0.375rem;
+      font-size: 0.75rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: rgba(0,42,56,0.7);
+    }
+    .field-input {
+      width: 100%; border-radius: 0.75rem;
+      border: 1px solid rgba(0,42,56,0.15);
+      background: #fff; padding: 0.75rem 1rem;
+      font-size: 0.875rem; color: var(--navy);
+      transition: border-color 0.15s, box-shadow 0.15s;
+      outline: none;
+    }
+    .field-input::placeholder { color: rgba(0,42,56,0.4); }
+    .field-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(0,175,215,0.1);
+    }
+    .field-input[type="file"]::file-selector-button {
+      margin-right: 0.75rem; border-radius: 0.375rem; border: 0;
+      background: var(--navy); padding: 0.375rem 0.75rem;
+      font-size: 0.75rem; font-weight: 600; color: #fff; cursor: pointer;
+    }
+
+    /* ══════════════════════════════
+       NAVBAR
+    ══════════════════════════════ */
+    #navbar {
+      position: fixed; inset-inline: 0; top: 0; z-index: 40;
+      transition: background 0.25s, box-shadow 0.25s;
+    }
+    #navbar.scrolled {
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      backdrop-filter: blur(8px);
+    }
+    .nav-inner {
+      display: flex; height: 4rem; align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-logo-badge {
+      display: grid; place-items: center;
+      height: 2.25rem; width: 2.25rem; border-radius: 0.5rem;
+      font-weight: 900; font-size: 0.875rem;
+      background: #fff; color: var(--navy); transition: background 0.2s, color 0.2s;
+    }
+    #navbar.scrolled .nav-logo-badge { background: var(--navy); color: #fff; }
+    .nav-logo-text {
+      display: none; font-size: 0.875rem; font-weight: 600;
+      line-height: 1.2; color: #fff; transition: color 0.2s;
+    }
+    #navbar.scrolled .nav-logo-text { color: var(--navy); }
+    @media (min-width: 640px) { .nav-logo-text { display: block; } }
+    .nav-logo-sub {
+      display: block; font-size: 0.625rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.18em; opacity: 0.7;
+    }
+    .nav-links {
+      display: none; align-items: center; gap: 1.75rem;
+    }
+    @media (min-width: 768px) { .nav-links { display: flex; } }
+    .nav-link {
+      font-size: 0.875rem; font-weight: 500;
+      color: rgba(255,255,255,0.9); transition: color 0.15s;
+    }
+    #navbar.scrolled .nav-link { color: var(--navy); }
+    .nav-link:hover { color: var(--primary); }
+    .nav-quote {
+      padding: 0.5rem 1.25rem !important;
+    }
+    .nav-hamburger {
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 0.375rem; padding: 0.5rem; background: none; border: none;
+      color: #fff; cursor: pointer; transition: color 0.2s;
+    }
+    #navbar.scrolled .nav-hamburger { color: var(--navy); }
+    @media (min-width: 768px) { .nav-hamburger { display: none; } }
+    #mobile-menu {
+      display: none; border-top: 1px solid rgba(0,42,56,0.1); background: #fff;
+    }
+    #mobile-menu.open { display: block; }
+    .mobile-menu-inner {
+      display: flex; flex-direction: column; padding: 0.75rem 0;
+    }
+    .mobile-menu-inner a {
+      padding: 0.625rem 0; font-size: 0.875rem; font-weight: 500; color: var(--navy);
+    }
+    .mobile-menu-inner .btn-primary { margin-top: 0.5rem; }
+
+    /* ══════════════════════════════
+       HERO
+    ══════════════════════════════ */
+    #hero {
+      position: relative; overflow: hidden;
+      background:
+        radial-gradient(120% 80% at 80% 0%, rgba(0,175,215,0.35) 0%, transparent 60%),
+        radial-gradient(80% 60% at 0% 100%, rgba(0,175,215,0.18) 0%, transparent 60%),
+        linear-gradient(135deg, #002a38 0%, #003d52 55%, #005f80 100%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; opacity: 0.06;
+      background-image: linear-gradient(white 1px, transparent 1px),
+        linear-gradient(90deg, white 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .hero-content {
+      position: relative; z-index: 10;
+      display: flex; flex-direction: column; justify-content: center;
+      min-height: 92vh; padding-top: 7rem; padding-bottom: 5rem;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      border-radius: 9999px; border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.1); padding: 0.25rem 0.75rem;
+      font-size: 0.6875rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.9); backdrop-filter: blur(6px);
+    }
+    .hero-h1 {
+      margin-top: 1.25rem;
+      font-size: clamp(2rem, 5vw, 3.75rem);
+      font-weight: 700; line-height: 1.05; color: #fff; max-width: 50rem;
+    }
+    .hero-p {
+      margin-top: 1.25rem; max-width: 42rem;
+      font-size: clamp(0.95rem, 2vw, 1.125rem); color: rgba(255,255,255,0.8);
+    }
+    .hero-cta {
+      margin-top: 2.25rem; display: flex; flex-wrap: wrap;
+      align-items: center; gap: 0.75rem;
+    }
+    .hero-stats {
+      margin-top: 3.5rem; display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1.5rem;
+      max-width: 32rem;
+    }
+    @media (min-width: 640px) {
+      .hero-stats { grid-template-columns: repeat(4, minmax(0,1fr)); }
+    }
+    .hero-stat-num { font-size: 1.875rem; font-weight: 700; color: var(--primary); }
+    .hero-stat-label {
+      margin-top: 0.25rem; font-size: 0.7rem;
+      text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.7);
+    }
+    .hero-wave {
+      pointer-events: none; position: absolute; bottom: -1px; left: 0; right: 0;
+    }
+    .hero-wave svg { width: 100%; display: block; }
+
+    /* ══════════════════════════════
+       ABOUT
+    ══════════════════════════════ */
+    #about { background: #fff; padding: 5rem 0; }
+    @media (min-width: 640px) { #about { padding: 7rem 0; } }
+    .about-grid {
+      display: grid; gap: 3rem;
+    }
+    @media (min-width: 1024px) {
+      .about-grid { grid-template-columns: 1fr 1fr; align-items: center; }
+    }
+    .about-p { margin-top: 1rem; color: rgba(0,42,56,0.7); line-height: 1.7; }
+    .about-cta { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .about-cards {
+      display: grid; grid-template-columns: 1fr; gap: 1.25rem;
+    }
+    @media (min-width: 640px) { .about-cards { grid-template-columns: 1fr 1fr; } }
+    .about-card {
+      border-radius: 1rem; border: 1px solid rgba(0,42,56,0.1);
+      background: rgba(244,241,235,0.4); padding: 1.5rem;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+    .about-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(0,175,215,0.4);
+      box-shadow: var(--shadow-card);
+    }
+    .about-card-icon {
+      display: grid; place-items: center;
+      height: 2.75rem; width: 2.75rem; border-radius: 0.75rem;
+      background: var(--navy); color: #fff;
+    }
+    .about-card h3 { margin-top: 1rem; font-size: 0.9375rem; }
+    .about-card p { margin-top: 0.375rem; font-size: 0.875rem; color: rgba(0,42,56,0.7); line-height: 1.6; }
+
+    /* ══════════════════════════════
+       BROCHURE
+    ══════════════════════════════ */
+    #brochure { background: rgba(244,241,235,0.6); padding: 5rem 0; }
+    @media (min-width: 640px) { #brochure { padding: 7rem 0; } }
+    .brochure-grid { display: grid; gap: 2.5rem; }
+    @media (min-width: 1024px) {
+      .brochure-grid { grid-template-columns: 2fr 3fr; align-items: center; }
+    }
+    .brochure-p { margin-top: 1rem; color: rgba(0,42,56,0.7); line-height: 1.7; }
+    .brochure-cta { margin-top: 1.75rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .brochure-list { margin-top: 2rem; }
+    .brochure-list li { margin-bottom: 0.5rem; font-size: 0.875rem; color: rgba(0,42,56,0.7); }
+    .brochure-preview {
+      border-radius: 1rem; border: 1px solid rgba(0,42,56,0.1);
+      background: #fff; box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+    .brochure-preview-bar {
+      display: flex; align-items: center; gap: 0.5rem;
+      border-bottom: 1px solid rgba(0,42,56,0.1); padding: 0.75rem 1rem;
+    }
+    .brochure-preview-bar span { font-size: 0.75rem; font-weight: 600; color: var(--navy); }
+    .brochure-preview-body {
+      position: relative; display: grid; place-items: center;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #002a38 0%, #003d52 55%, #005f80 100%);
+      color: #fff;
+    }
+    .brochure-bg-grid {
+      position: absolute; inset: 0; opacity: 0.08;
+      background-image: linear-gradient(white 1px, transparent 1px),
+        linear-gradient(90deg, white 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .brochure-inner { position: relative; z-index: 10; text-align: center; padding: 2rem; }
+    .brochure-logo-badge {
+      display: grid; place-items: center; margin: 0 auto;
+      height: 3.5rem; width: 3.5rem; border-radius: 0.75rem;
+      background: var(--primary); color: var(--navy);
+      font-size: 1.25rem; font-weight: 900;
+    }
+    .brochure-inner h3 { margin-top: 1.25rem; font-size: 1.5rem; }
+    .brochure-inner .sub { margin-top: 0.5rem; font-size: 0.875rem; color: rgba(255,255,255,0.7); }
+    .brochure-inner .tag {
+      margin-top: 1.5rem; font-size: 0.7rem;
+      text-transform: uppercase; letter-spacing: 0.2em; color: var(--primary);
+    }
+
+    /* ══════════════════════════════
+       SERVICES
+    ══════════════════════════════ */
+    #services { background: #fff; padding: 5rem 0; }
+    @media (min-width: 640px) { #services { padding: 7rem 0; } }
+    .services-intro { max-width: 40rem; }
+    .services-intro p { margin-top: 1rem; color: rgba(0,42,56,0.7); line-height: 1.7; }
+    .services-divider {
+      display: flex; align-items: center; gap: 0.75rem; margin-top: 3rem;
+    }
+    .services-divider hr { flex: 1; border: none; height: 1px; background: rgba(0,42,56,0.1); }
+    .services-divider span {
+      font-size: 0.75rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.2em; color: rgba(0,42,56,0.6);
+    }
+    .services-grid {
+      display: grid; gap: 1.25rem; margin-top: 1.5rem;
+    }
+    @media (min-width: 640px) { .services-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .services-grid { grid-template-columns: 1fr 1fr 1fr; } }
+    .service-card {
+      border-radius: 1rem; border: 1px solid rgba(0,42,56,0.1);
+      background: #fff; padding: 1.5rem;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+    .service-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(0,175,215,0.4);
+      box-shadow: var(--shadow-card);
+    }
+    .service-card-icon {
+      display: grid; place-items: center;
+      height: 2.75rem; width: 2.75rem; border-radius: 0.75rem;
+      background: var(--ivory); color: var(--navy);
+      transition: background 0.2s, color 0.2s;
+    }
+    .service-card:hover .service-card-icon { background: var(--primary); color: #fff; }
+    .service-card h4 { margin-top: 1rem; font-size: 0.9375rem; }
+    .service-card p { margin-top: 0.375rem; font-size: 0.875rem; color: rgba(0,42,56,0.7); line-height: 1.6; }
+
+    /* ══════════════════════════════
+       WHY CHOOSE US
+    ══════════════════════════════ */
+    #why {
+      position: relative; background: var(--navy);
+      padding: 5rem 0; color: #fff;
+    }
+    @media (min-width: 640px) { #why { padding: 7rem 0; } }
+    .why-grid-bg {
+      position: absolute; inset: 0; opacity: 0.06;
+      background-image: linear-gradient(white 1px, transparent 1px),
+        linear-gradient(90deg, white 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .why-relative { position: relative; }
+    .why-intro { max-width: 40rem; }
+    .why-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.75rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.18em; color: var(--primary);
+    }
+    .why-intro h2 { margin-top: 0.75rem; font-size: clamp(1.75rem, 4vw, 2.25rem); }
+    .why-intro p { margin-top: 1rem; color: rgba(255,255,255,0.7); line-height: 1.7; }
+    .why-cards {
+      display: grid; gap: 1.25rem; margin-top: 3rem;
+    }
+    @media (min-width: 640px) { .why-cards { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .why-cards { grid-template-columns: 1fr 1fr 1fr; } }
+    .why-card {
+      border-radius: 1rem; border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04); padding: 1.5rem;
+      backdrop-filter: blur(6px);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .why-card:hover { border-color: rgba(0,175,215,0.4); background: rgba(255,255,255,0.07); }
+    .why-card-icon {
+      display: grid; place-items: center;
+      height: 2.75rem; width: 2.75rem; border-radius: 0.75rem;
+      background: var(--primary); color: var(--navy);
+    }
+    .why-card h3 { margin-top: 1rem; font-size: 0.9375rem; }
+    .why-card p { margin-top: 0.375rem; font-size: 0.875rem; color: rgba(255,255,255,0.7); line-height: 1.6; }
+
+    /* ══════════════════════════════
+       CLIENTS
+    ══════════════════════════════ */
+    #clients { background: #fff; padding: 4rem 0; }
+    .clients-label {
+      text-align: center; font-size: 0.75rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.22em; color: rgba(0,42,56,0.6);
+    }
+    .clients-grid {
+      display: grid; margin-top: 2rem; gap: 1rem;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+    }
+    @media (min-width: 640px) { .clients-grid { grid-template-columns: repeat(4, minmax(0,1fr)); } }
+    @media (min-width: 1024px) { .clients-grid { grid-template-columns: repeat(8, minmax(0,1fr)); } }
+    .client-chip {
+      display: grid; height: 4rem; place-items: center;
+      border-radius: 0.75rem; border: 1px solid rgba(0,42,56,0.1);
+      background: rgba(244,241,235,0.4);
+      font-size: 0.875rem; font-weight: 600; color: rgba(0,42,56,0.7);
+    }
+
+    /* ══════════════════════════════
+       INQUIRY FORM
+    ══════════════════════════════ */
+    #inquiry { background: rgba(244,241,235,0.6); padding: 5rem 0; }
+    @media (min-width: 640px) { #inquiry { padding: 7rem 0; } }
+    .inquiry-grid { display: grid; gap: 2.5rem; }
+    @media (min-width: 1024px) { .inquiry-grid { grid-template-columns: 2fr 3fr; } }
+    .inquiry-left p { margin-top: 1rem; color: rgba(0,42,56,0.7); line-height: 1.7; }
+    .inquiry-list { margin-top: 2rem; }
+    .inquiry-list li { margin-bottom: 0.75rem; font-size: 0.875rem; color: rgba(0,42,56,0.7); }
+    .inquiry-talk {
+      margin-top: 2.5rem; border-radius: 1rem;
+      border: 1px solid rgba(0,42,56,0.1); background: #fff; padding: 1.25rem;
+    }
+    .inquiry-talk p:first-child { font-size: 0.875rem; font-weight: 600; }
+    .inquiry-talk p:last-child { margin-top: 0.25rem; font-size: 0.875rem; color: rgba(0,42,56,0.7); }
+    .inquiry-talk a { font-weight: 600; color: var(--primary); }
+    .inquiry-form {
+      border-radius: 1.5rem; border: 1px solid rgba(0,42,56,0.1);
+      background: #fff; padding: 1.5rem; box-shadow: var(--shadow-card);
+    }
+    @media (min-width: 640px) { .inquiry-form { padding: 2rem; } }
+    .form-grid { display: grid; gap: 1.25rem; }
+    @media (min-width: 640px) { .form-grid { grid-template-columns: 1fr 1fr; } }
+    .form-full { grid-column: 1 / -1; }
+    .form-actions {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 1rem; margin-top: 1.5rem;
+    }
+    .form-note { font-size: 0.75rem; color: rgba(0,42,56,0.6); }
+    .form-error {
+      display: flex; align-items: flex-start; gap: 0.5rem; margin-top: 1.25rem;
+      border-radius: 0.75rem; border: 1px solid #fecaca; background: #fef2f2;
+      padding: 0.75rem; font-size: 0.875rem; color: #b91c1c;
+    }
+    .form-success {
+      text-align: center; padding: 2.5rem;
+    }
+    .form-success-icon {
+      display: grid; place-items: center; margin: 0 auto;
+      height: 3.5rem; width: 3.5rem; border-radius: 9999px;
+      background: rgba(0,175,215,0.1); color: var(--primary);
+    }
+    .form-success h2 { margin-top: 1.25rem; font-size: 1.5rem; }
+    .form-success p { margin-top: 0.5rem; color: rgba(0,42,56,0.7); }
+    .form-success .ref { margin-top: 1rem; font-size: 0.875rem; color: rgba(0,42,56,0.6); }
+    .form-success .ref span { font-family: monospace; font-weight: 600; }
+    .form-success .btn-ghost { margin-top: 2rem; }
+
+    /* ══════════════════════════════
+       CONTACT
+    ══════════════════════════════ */
+    #contact { background: #fff; padding: 5rem 0; }
+    @media (min-width: 640px) { #contact { padding: 7rem 0; } }
+    .contact-grid { display: grid; gap: 2.5rem; }
+    @media (min-width: 1024px) { .contact-grid { grid-template-columns: 1fr 1fr; } }
+    .contact-p { margin-top: 1rem; color: rgba(0,42,56,0.7); max-width: 28rem; line-height: 1.7; }
+    .contact-dl { display: grid; gap: 1.25rem; margin-top: 2rem; }
+    @media (min-width: 640px) { .contact-dl { grid-template-columns: 1fr 1fr; } }
+    .contact-item { display: flex; align-items: flex-start; gap: 0.75rem; }
+    .contact-item-icon {
+      display: grid; place-items: center; height: 2.5rem; width: 2.5rem;
+      border-radius: 0.75rem; background: var(--ivory); color: var(--navy);
+      flex-shrink: 0;
+    }
+    .contact-item dt { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(0,42,56,0.6); }
+    .contact-item dd { font-size: 0.875rem; font-weight: 500; color: var(--navy); margin-top: 0.125rem; }
+    .contact-map {
+      overflow: hidden; border-radius: 1rem;
+      border: 1px solid rgba(0,42,56,0.1); box-shadow: var(--shadow-card);
+    }
+    .contact-map iframe { display: block; width: 100%; height: 380px; border: 0; }
+
+    /* ══════════════════════════════
+       FOOTER
+    ══════════════════════════════ */
+    footer { background: var(--navy); color: rgba(255,255,255,0.8); }
+    .footer-inner {
+      display: grid; gap: 2.5rem; padding: 3.5rem 0;
+    }
+    @media (min-width: 1024px) { .footer-inner { grid-template-columns: 2fr 1fr 1fr; } }
+    .footer-brand { display: flex; align-items: center; gap: 0.5rem; }
+    .footer-badge {
+      display: grid; place-items: center;
+      height: 2.25rem; width: 2.25rem; border-radius: 0.5rem;
+      background: var(--primary); color: var(--navy); font-weight: 900;
+    }
+    .footer-brand-text { font-size: 0.875rem; font-weight: 600; line-height: 1.2; color: #fff; }
+    .footer-brand-sub { display: block; font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.18em; color: rgba(255,255,255,0.6); }
+    .footer-desc { margin-top: 1.25rem; font-size: 0.875rem; max-width: 32rem; line-height: 1.7; }
+    .footer-col h4 { font-size: 0.875rem; font-weight: 600; color: #fff; }
+    .footer-col ul { margin-top: 1rem; }
+    .footer-col ul li { margin-bottom: 0.5rem; font-size: 0.875rem; }
+    .footer-col ul li a { color: rgba(255,255,255,0.8); transition: color 0.15s; }
+    .footer-col ul li a:hover { color: var(--primary); }
+    .footer-contact-item { display: flex; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.75rem; font-size: 0.875rem; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer-bottom-inner {
+      display: flex; flex-direction: column; gap: 0.75rem;
+      padding: 1.25rem 0; font-size: 0.75rem;
+    }
+    @media (min-width: 640px) {
+      .footer-bottom-inner { flex-direction: row; align-items: center; justify-content: space-between; }
+    }
+    .footer-legal { display: flex; gap: 1.25rem; }
+    .footer-legal a { color: rgba(255,255,255,0.8); transition: color 0.15s; }
+    .footer-legal a:hover { color: var(--primary); }
+
+    /* ══════════════════════════════
+       WHATSAPP FAB
+    ══════════════════════════════ */
+    .whatsapp-fab {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 50;
+      display: grid; place-items: center;
+      height: 3.5rem; width: 3.5rem; border-radius: 9999px;
+      background: #25d366; color: #fff;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .whatsapp-fab:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(37,211,102,0.6); }
+
+    /* ── SVG icon helper ── */
+    .icon { display: inline-block; vertical-align: middle; }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     NAVBAR
+════════════════════════════════════════ -->
+<header id="navbar">
+  <div class="container-x nav-inner">
+    <a href="#top" class="nav-logo">
+      <span class="nav-logo-badge">DI</span>
+      <span class="nav-logo-text">
+        Darwish Interserve
+        <span class="nav-logo-sub">Facility Management</span>
+      </span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="#about"    class="nav-link">About</a>
+      <a href="#brochure" class="nav-link">Brochure</a>
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#why"      class="nav-link">Why Us</a>
+      <a href="#inquiry"  class="nav-link">Request Service</a>
+      <a href="#contact"  class="nav-link">Contact</a>
+      <a href="#inquiry"  class="btn-primary nav-quote">Get a Quote</a>
+    </nav>
+
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+      <svg id="hamburger-open"  class="icon" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6"  x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <svg id="hamburger-close" class="icon" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+
+  <div id="mobile-menu">
+    <div class="container-x mobile-menu-inner">
+      <a href="#about"    onclick="closeMobileMenu()">About</a>
+      <a href="#brochure" onclick="closeMobileMenu()">Brochure</a>
+      <a href="#services" onclick="closeMobileMenu()">Services</a>
+      <a href="#why"      onclick="closeMobileMenu()">Why Us</a>
+      <a href="#inquiry"  onclick="closeMobileMenu()">Request Service</a>
+      <a href="#contact"  onclick="closeMobileMenu()">Contact</a>
+      <a href="#inquiry"  class="btn-primary" onclick="closeMobileMenu()">Get a Quote</a>
+    </div>
+  </div>
+</header>
+
+<!-- ════════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section id="top">
+  <div id="hero">
+    <div class="hero-grid"></div>
+    <div class="container-x hero-content">
+      <div style="max-width:50rem">
+        <span class="hero-badge">
+          <svg class="icon" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          ISO Certified · Qatar
+        </span>
+        <h1 class="hero-h1">Integrated Facility Management Solutions in Qatar.</h1>
+        <p class="hero-p">
+          Reliable. Professional. 24/7 support. Darwish Interserve FM delivers
+          Hard FM, Soft FM, MEP, cleaning, security and skilled manpower —
+          engineered for uptime and built on accountability.
+        </p>
+        <div class="hero-cta">
+          <a href="#inquiry" class="btn-primary">
+            Request Service
+            <svg class="icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="#brochure" class="btn-secondary">
+            <svg class="icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            View Brochure
+          </a>
+          <a href="#contact" class="btn-secondary">
+            <svg class="icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.45 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.06a16 16 0 0 0 6 6l.81-.81a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Contact Us
+          </a>
+        </div>
+        <dl class="hero-stats">
+          <div><dt class="hero-stat-num">15+</dt><dd class="hero-stat-label">Years in Qatar</dd></div>
+          <div><dt class="hero-stat-num">500+</dt><dd class="hero-stat-label">Skilled Workforce</dd></div>
+          <div><dt class="hero-stat-num">120+</dt><dd class="hero-stat-label">Active Contracts</dd></div>
+          <div><dt class="hero-stat-num">24/7</dt><dd class="hero-stat-label">Operations Desk</dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+        <path fill="#ffffff" d="M0,32 C240,80 480,80 720,48 C960,16 1200,16 1440,48 L1440,80 L0,80 Z"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     ABOUT
+════════════════════════════════════════ -->
+<section id="about">
+  <div class="container-x about-grid">
+    <div>
+      <span class="eyebrow">About DIFM</span>
+      <h2 class="section-title" style="margin-top:0.75rem">
+        A trusted facility management partner — built around your assets.
+      </h2>
+      <p class="about-p">
+        Darwish Interserve Facility Management is a Qatar-based integrated FM provider
+        serving government, commercial, industrial and hospitality clients. We combine
+        engineering depth, disciplined operations and a service-first culture to keep
+        your facilities safe, compliant and performing at their best.
+      </p>
+      <p class="about-p">
+        From single-service mandates to fully outsourced FM contracts, our teams deliver
+        measurable outcomes — backed by transparent reporting and a 24/7 operations desk.
+      </p>
+      <div class="about-cta">
+        <a href="#services" class="btn-ghost">Explore Services</a>
+        <a href="#inquiry"  class="btn-primary">Request a Proposal</a>
+      </div>
+    </div>
+
+    <div class="about-cards">
+      <div class="about-card">
+        <div class="about-card-icon">
+          <svg class="icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <h3>Integrated FM</h3>
+        <p>Single-window delivery of Hard FM, Soft FM, MEP and specialist services across commercial, industrial and residential portfolios.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">
+          <svg class="icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <h3>Engineering led</h3>
+        <p>Asset-centric maintenance plans, CAFM-driven workflows and qualified engineers ensuring uptime and lifecycle value.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">
+          <svg class="icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Skilled workforce</h3>
+        <p>In-house technicians, supervisors and operatives — trained, certified and deployable on short notice across Qatar.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">
+          <svg class="icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+        </div>
+        <h3>Quality &amp; compliance</h3>
+        <p>ISO-aligned processes, HSE governance and transparent KPIs reported to clients month on month.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     BROCHURE
+════════════════════════════════════════ -->
+<section id="brochure">
+  <div class="container-x brochure-grid">
+    <div>
+      <span class="eyebrow">Company Brochure</span>
+      <h2 class="section-title" style="margin-top:0.75rem">Everything about DIFM — in one document.</h2>
+      <p class="brochure-p">
+        Download or preview our latest company profile covering services, certifications,
+        case studies and our delivery methodology.
+      </p>
+      <div class="brochure-cta">
+        <a href="/brochure/difm-company-profile.pdf" target="_blank" rel="noopener noreferrer" class="btn-primary">
+          <svg class="icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          View Brochure
+        </a>
+        <a href="/brochure/difm-company-profile.pdf" download class="btn-ghost">
+          <svg class="icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download PDF
+        </a>
+      </div>
+      <ul class="brochure-list">
+        <li>• Company Profile (2025 edition)</li>
+        <li>• ISO 9001 / 14001 / 45001 certificates</li>
+        <li>• Service catalogue &amp; SLAs</li>
+      </ul>
+    </div>
+
+    <div class="brochure-preview">
+      <div class="brochure-preview-bar">
+        <svg class="icon" width="16" height="16" fill="none" stroke="#00afd7" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <span>difm-company-profile.pdf</span>
+      </div>
+      <div class="brochure-preview-body">
+        <div class="brochure-bg-grid"></div>
+        <div class="brochure-inner">
+          <div class="brochure-logo-badge">DI</div>
+          <h3>Darwish Interserve FM</h3>
+          <p class="sub">Company Profile · Qatar · 2025</p>
+          <p class="tag">Reliable · Professional · 24/7</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     SERVICES
+════════════════════════════════════════ -->
+<section id="services">
+  <div class="container-x">
+    <div class="services-intro">
+      <span class="eyebrow">Our Services</span>
+      <h2 class="section-title" style="margin-top:0.75rem">Hard FM and Soft FM — under one accountable partner.</h2>
+      <p>Choose individual services or a bundled IFM contract. Every mandate is delivered against measurable KPIs and transparent reporting.</p>
+    </div>
+
+    <!-- Hard FM -->
+    <div class="services-divider">
+      <hr/><span>Hard FM</span><hr/>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-card-icon">
+          <svg class="icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <h4>MEP Maintenance</h4>
+        <p>Planned &amp; reactive MEP services across all asset classes.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-card-icon">
+          <svg class="icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg>
+        </div>
+        <h4>HVAC</h4>
+        <p>Chillers, AHUs, FCUs, ducting, IAQ and BMS integration.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-card-icon">
+          <svg class="icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <h4>Electrical</h4>
+        <p>LV systems, panels, DBs, lighting and power quality.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-card-icon">
+          <svg class="icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg>
+        </div>
+        <h4>Plumbing</h4>
+        <p>Domestic water, drainage, pumps and water treatment.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-card-icon">
+          <svg class="icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 20h.01M7 20v-4"/><path d="M12 20V10"/><path d="M17 20V4"/><path d="M22 20v-8"/></svg>
+        </div>
+        <h4>Civil Maintenance</h4>
+        <p>Building fabric, finishes, joinery and waterproofing.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-card-icon">
+          <svg class="icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="2" x2="9" y2="4"/><line x1="15" y1="2" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="22"/><line x1="15" y1="20" x2="15" y2="22"/><line x1="20" y1="9" x2="22" y2="9"/><line x1="20" y1="14" x2="22" y2="14"/><line x1="2" y1="9" x2="4" y2="9"/><line x1="2" y1="14" x2="4" y2="14"/></svg>
+        </div>
+        <h4>BMS &amp; Generators</h4>
+        <p>BMS upkeep, gensets, ATS, UPS and load management.</p>
+      </div>
+    </div>
+
+    <!-- Soft FM -->
+    <div class="services-divider" style="margin-top:4rem">
+      <hr/><span>Soft FM</span><hr/>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-card-icon">
+          <svg class="icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
+        </div>
+        <h4>Cleaning</h4>
+        <p>Daily, periodic and specialized cleaning programs.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-card-icon">
+          <svg class="icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 10h18"/><path d="M3 14h18"/><path d="M7 18v2"/><path d="M17 18v2"/><rect x="2" y="6" width="20" height="12" rx="2"/></svg>
+        </div>
+        <h4>Housekeeping</h4>
+        <p>Hospitality-grade housekeeping &amp; front-of-house.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-card-icon">
+          <svg class="icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <h4>Pest Control</h4>
+        <p>MoPH-aligned IPM programs and one-off treatments.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-card-icon">
+          <svg class="icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+        </div>
+        <h4>Waste Management</h4>
+        <p>Segregation, collection and reporting.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-card-icon">
+          <svg class="icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 22"/><path d="M9 22c0-3 1.34-5.79 4-7.5"/><path d="M17 8c0 4.42-3.58 8-8 8"/></svg>
+        </div>
+        <h4>Landscaping</h4>
+        <p>Soft &amp; hard landscaping, irrigation and upkeep.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-card-icon">
+          <svg class="icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h4>Security</h4>
+        <p>Trained guards, supervisors and access control.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     WHY CHOOSE US
+════════════════════════════════════════ -->
+<section id="why">
+  <div class="why-grid-bg"></div>
+  <div class="container-x why-relative">
+    <div class="why-intro">
+      <span class="why-eyebrow">Why DIFM</span>
+      <h2>Engineered for uptime. Built on accountability.</h2>
+      <p>Six reasons clients across Qatar choose Darwish Interserve FM as their long-term facilities partner.</p>
+    </div>
+    <div class="why-cards">
+      <div class="why-card">
+        <div class="why-card-icon">
+          <svg class="icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>24/7 Operations Desk</h3>
+        <p>Round-the-clock dispatch and emergency response.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">
+          <svg class="icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Skilled In-house Team</h3>
+        <p>Certified engineers and operatives — no surprise sub-contracting.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">
+          <svg class="icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>HSE &amp; Compliance</h3>
+        <p>ISO-aligned, MoPH-compliant and audit-ready processes.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">
+          <svg class="icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <h3>KPI-driven Reporting</h3>
+        <p>Monthly performance reviews with transparent SLAs.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">
+          <svg class="icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3>Pan-Qatar Coverage</h3>
+        <p>Mobilized rapidly across Doha, Lusail, Al Wakrah &amp; beyond.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">
+          <svg class="icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+        </div>
+        <h3>Service-first Culture</h3>
+        <p>A single-point-of-contact that owns outcomes, not just tasks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     CLIENTS
+════════════════════════════════════════ -->
+<section id="clients">
+  <div class="container-x">
+    <p class="clients-label">Trusted across sectors in Qatar</p>
+    <div class="clients-grid">
+      <div class="client-chip">Government</div>
+      <div class="client-chip">Hospitality</div>
+      <div class="client-chip">Healthcare</div>
+      <div class="client-chip">Banking</div>
+      <div class="client-chip">Retail</div>
+      <div class="client-chip">Industrial</div>
+      <div class="client-chip">Education</div>
+      <div class="client-chip">Aviation</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     INQUIRY FORM
+════════════════════════════════════════ -->
+<section id="inquiry">
+  <div class="container-x inquiry-grid">
+    <div class="inquiry-left">
+      <span class="eyebrow">Request Service</span>
+      <h2 class="section-title" style="margin-top:0.75rem">Tell us what you need.</h2>
+      <p>Share your requirement and our sales team will respond with a tailored proposal — typically within one business day.</p>
+      <ul class="inquiry-list">
+        <li>• Detailed scoping by a qualified estimator</li>
+        <li>• Transparent commercials and SLAs</li>
+        <li>• Mobilization plan with clear milestones</li>
+      </ul>
+      <div class="inquiry-talk">
+        <p>Prefer to talk?</p>
+        <p>
+          Call our sales line on <a href="tel:+97444000000">+974 4400 0000</a> or email
+          <a href="mailto:sales@difm.qa">sales@difm.qa</a>.
+        </p>
+      </div>
+    </div>
+
+    <div id="form-wrapper">
+      <form id="inquiry-form" class="inquiry-form" novalidate>
+        <!-- Honeypot -->
+        <input type="text" name="company_website" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true" />
+
+        <div class="form-grid">
+          <div>
+            <label class="field-label" for="fullName">Full Name *</label>
+            <input id="fullName" name="fullName" required class="field-input" placeholder="John Doe" />
+          </div>
+          <div>
+            <label class="field-label" for="companyName">Company Name</label>
+            <input id="companyName" name="companyName" class="field-input" placeholder="ABC Trading" />
+          </div>
+          <div>
+            <label class="field-label" for="email">Email *</label>
+            <input id="email" name="email" type="email" required class="field-input" placeholder="name@company.com" />
+          </div>
+          <div>
+            <label class="field-label" for="phone">Phone *</label>
+            <input id="phone" name="phone" type="tel" required class="field-input" placeholder="+974 5xxx xxxx" />
+          </div>
+          <div>
+            <label class="field-label" for="category">Service Category *</label>
+            <select id="category" name="category" required class="field-input" onchange="updateServices(this.value)">
+              <option value="">Select category…</option>
+              <option>Hard FM</option>
+              <option>Soft FM</option>
+              <option>MEP</option>
+              <option>Cleaning &amp; Housekeeping</option>
+              <option>Security</option>
+              <option>Manpower Supply</option>
+              <option>Integrated FM (IFM)</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div>
+            <label class="field-label" for="service">Specific Service</label>
+            <select id="service" name="service" class="field-input" disabled>
+              <option value="">Choose a category first</option>
+            </select>
+          </div>
+          <div>
+            <label class="field-label" for="location">Location</label>
+            <input id="location" name="location" class="field-input" placeholder="Doha, Lusail…" />
+          </div>
+          <div>
+            <label class="field-label" for="manpower">Manpower Required</label>
+            <input id="manpower" name="manpower" type="number" min="0" class="field-input" placeholder="e.g. 10" />
+          </div>
+          <div>
+            <label class="field-label" for="startDate">Preferred Start Date</label>
+            <input id="startDate" name="startDate" type="date" class="field-input" />
+          </div>
+          <div>
+            <label class="field-label" for="attachment">Attachment (PDF, DOCX, JPG, PNG · max 10MB)</label>
+            <input id="attachment" name="attachment" type="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" class="field-input" />
+          </div>
+          <div class="form-full">
+            <label class="field-label" for="details">Requirement Details *</label>
+            <textarea id="details" name="details" required rows="5" class="field-input" style="resize:vertical" placeholder="Briefly describe scope, duration, site, and any specific requirements."></textarea>
+          </div>
+          <div class="form-full" style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.75rem;color:rgba(0,42,56,0.7)">
+            <input id="consent" name="consent" type="checkbox" required style="margin-top:2px" />
+            <label for="consent">
+              I agree to be contacted by Darwish Interserve FM regarding my inquiry and accept the privacy policy.
+            </label>
+          </div>
+        </div>
+
+        <div id="form-error" class="form-error" style="display:none">
+          <svg class="icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:2px"><path d="m10.29 3.86-8 14A2 2 0 0 0 4 20h16a2 2 0 0 0 1.71-3.14l-8-14a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <span id="form-error-msg"></span>
+        </div>
+
+        <div class="form-actions">
+          <p class="form-note">We typically reply within one business day.</p>
+          <button type="submit" id="submit-btn" class="btn-primary">
+            <svg class="icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Submit Inquiry
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     CONTACT
+════════════════════════════════════════ -->
+<section id="contact">
+  <div class="container-x contact-grid">
+    <div>
+      <span class="eyebrow">Contact</span>
+      <h2 class="section-title" style="margin-top:0.75rem">Talk to our team.</h2>
+      <p class="contact-p">Reach us directly or visit our office. We respond to inquiries within one business day.</p>
+      <dl class="contact-dl">
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg class="icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div><dt>Office</dt><dd>Doha, Qatar</dd></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg class="icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.45 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.06a16 16 0 0 0 6 6l.81-.81a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div><dt>Phone</dt><dd>+974 4400 0000</dd></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg class="icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div><dt>Email</dt><dd>sales@difm.qa</dd></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg class="icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div><dt>Hours</dt><dd>24/7 Operations</dd></div>
+        </div>
+      </dl>
+    </div>
+
+    <div class="contact-map">
+      <iframe
+        title="DIFM Office Map"
+        src="https://www.google.com/maps?q=Doha,Qatar&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer>
+  <div class="container-x footer-inner">
+    <div>
+      <div class="footer-brand">
+        <span class="footer-badge">DI</span>
+        <div class="footer-brand-text">
+          Darwish Interserve
+          <span class="footer-brand-sub">Facility Management</span>
+        </div>
+      </div>
+      <p class="footer-desc">
+        Integrated Facility Management Solutions across Qatar — Hard FM, Soft FM, MEP,
+        cleaning, security and skilled manpower. Reliable, professional and available 24/7.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#brochure">Brochure</a></li>
+        <li><a href="#inquiry">Request Service</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li>
+          <div class="footer-contact-item">
+            <svg class="icon" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Doha, Qatar
+          </div>
+        </li>
+        <li>
+          <div class="footer-contact-item">
+            <svg class="icon" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.45 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.06a16 16 0 0 0 6 6l.81-.81a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            +974 4400 0000
+          </div>
+        </li>
+        <li>
+          <div class="footer-contact-item">
+            <svg class="icon" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            sales@difm.qa
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container-x footer-bottom-inner">
+      <p>&copy; 2025 Darwish Interserve Facility Management. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp FAB -->
+<a href="https://wa.me/97444000000" target="_blank" rel="noopener noreferrer" class="whatsapp-fab" aria-label="WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<script>
+  /* ── Navbar scroll effect ── */
+  const navbar = document.getElementById('navbar');
+  function updateNavbar() {
+    if (window.scrollY > 24) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+  }
+  updateNavbar();
+  window.addEventListener('scroll', updateNavbar, { passive: true });
+
+  /* ── Mobile menu ── */
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconOpen  = document.getElementById('hamburger-open');
+  const iconClose = document.getElementById('hamburger-close');
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    iconOpen.style.display  = isOpen ? 'none'         : 'inline-block';
+    iconClose.style.display = isOpen ? 'inline-block' : 'none';
+  });
+
+  function closeMobileMenu() {
+    mobileMenu.classList.remove('open');
+    iconOpen.style.display  = 'inline-block';
+    iconClose.style.display = 'none';
+  }
+
+  /* ── Service sub-select ── */
+  const servicesByCategory = {
+    'Hard FM':                ['HVAC','Electrical','Plumbing','Civil Maintenance','BMS','Generator Maintenance'],
+    'Soft FM':                ['Housekeeping','Pest Control','Waste Management','Landscaping','Reception Services'],
+    'MEP':                    ['Installation','Maintenance','Retrofit / Upgrade'],
+    'Cleaning & Housekeeping':['Daily Cleaning','Periodic Deep Cleaning','Post-construction Cleaning'],
+    'Security':               ['Manned Guarding','Event Security','Access Control'],
+    'Manpower Supply':        ['Technicians','Helpers','Supervisors','Skilled Trades'],
+    'Integrated FM (IFM)':   ['Full IFM Contract','Bundled Services'],
+    'Other':                  ['Specify in details']
+  };
+
+  function updateServices(cat) {
+    const sel = document.getElementById('service');
+    sel.innerHTML = '';
+    if (!cat) {
+      sel.disabled = true;
+      sel.innerHTML = '<option value="">Choose a category first</option>';
+      return;
+    }
+    sel.disabled = false;
+    sel.innerHTML = '<option value="">Select service…</option>';
+    (servicesByCategory[cat] || []).forEach(s => {
+      const o = document.createElement('option');
+      o.value = s; o.textContent = s;
+      sel.appendChild(o);
+    });
+  }
+
+  /* ── Inquiry form submission ── */
+  const form      = document.getElementById('inquiry-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const errBox    = document.getElementById('form-error');
+  const errMsg    = document.getElementById('form-error-msg');
+  const wrapper   = document.getElementById('form-wrapper');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errBox.style.display = 'none';
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `
+      <svg class="icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+        style="animation:spin 1s linear infinite">
+        <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
+      </svg>
+      Submitting…`;
+
+    const fd = new FormData(form);
+
+    try {
+      const res  = await fetch('/api/inquiry', { method: 'POST', body: fd });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.error || 'Submission failed');
+
+      wrapper.innerHTML = `
+        <div class="inquiry-form form-success">
+          <div class="form-success-icon">
+            <svg class="icon" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <h2>Inquiry received.</h2>
+          <p>Thank you for contacting Darwish Interserve FM. Our team has received your request and will be in touch shortly.</p>
+          <p class="ref">Your reference: <span>${data.reference}</span></p>
+          <button class="btn-ghost" onclick="location.reload()">Submit another inquiry</button>
+        </div>`;
+    } catch (err) {
+      errMsg.textContent = err?.message || 'Something went wrong. Please try again.';
+      errBox.style.display = 'flex';
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = `
+        <svg class="icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
+        Submit Inquiry`;
+    }
+  });
+</script>
+<style>
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</body>
+</html>
