@@ -293,19 +293,6 @@
       border-bottom: 1px solid rgba(0,42,56,0.1); padding: 0.75rem 1rem;
     }
     .brochure-preview-bar span { font-size: 0.75rem; font-weight: 600; color: var(--navy); }
-    .brochure-preview-body {
-      position: relative; display: grid; place-items: center;
-      aspect-ratio: 4/3;
-      background: linear-gradient(135deg, #002a38 0%, #003d52 55%, #005f80 100%);
-      color: #fff;
-    }
-    .brochure-bg-grid {
-      position: absolute; inset: 0; opacity: 0.08;
-      background-image: linear-gradient(white 1px, transparent 1px),
-        linear-gradient(90deg, white 1px, transparent 1px);
-      background-size: 32px 32px;
-    }
-    .brochure-inner { position: relative; z-index: 10; text-align: center; padding: 2rem; }
     .brochure-logo-badge {
       display: grid; place-items: center; margin: 0 auto;
       height: 3.5rem; width: 3.5rem; border-radius: 0.75rem;
@@ -714,17 +701,17 @@
         case studies and our delivery methodology.
       </p>
       <div class="brochure-cta">
-        <a href="/brochure/difm-company-profile.pdf" target="_blank" rel="noopener noreferrer" class="btn-primary">
+        <a href="brochure/difm-company-profile-may2026.pdf" target="_blank" rel="noopener noreferrer" class="btn-primary">
           <svg class="icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
           View Brochure
         </a>
-        <a href="/brochure/difm-company-profile.pdf" download class="btn-ghost">
+        <a href="brochure/difm-company-profile-may2026.pdf" download="DIFM-Company-Profile-May-2026.pdf" class="btn-ghost">
           <svg class="icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Download PDF
         </a>
       </div>
       <ul class="brochure-list">
-        <li>• Company Profile (2025 edition)</li>
+        <li>• Company Profile (May 2026 edition)</li>
         <li>• ISO 9001 / 14001 / 45001 certificates</li>
         <li>• Service catalogue &amp; SLAs</li>
       </ul>
@@ -733,17 +720,13 @@
     <div class="brochure-preview">
       <div class="brochure-preview-bar">
         <svg class="icon" width="16" height="16" fill="none" stroke="#00afd7" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-        <span>difm-company-profile.pdf</span>
+        <span>1. May 2026 Company profile.pdf</span>
       </div>
-      <div class="brochure-preview-body">
-        <div class="brochure-bg-grid"></div>
-        <div class="brochure-inner">
-          <div class="brochure-logo-badge">DI</div>
-          <h3>Darwish Interserve FM</h3>
-          <p class="sub">Company Profile · Qatar · 2025</p>
-          <p class="tag">Reliable · Professional · 24/7</p>
-        </div>
-      </div>
+      <iframe
+        src="brochure/difm-company-profile-may2026.pdf"
+        style="display:block;width:100%;height:480px;border:0;"
+        title="DIFM Company Profile May 2026"
+      ></iframe>
     </div>
   </div>
 </section>
