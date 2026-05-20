@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white text-brand-navy antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  h1, h2, h3, h4 {
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand-gold px-6 py-3 text-sm font-semibold text-brand-navy shadow-card transition hover:bg-amber-400 focus:outline-none focus:ring-2 focus:ring-brand-gold/60;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-brand-navy/15 bg-white px-6 py-3 text-sm font-semibold text-brand-navy transition hover:border-brand-navy/30 hover:bg-brand-ivory;
+  }
+  .section-title {
+    @apply text-3xl sm:text-4xl font-semibold text-brand-navy;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand-teal;
+  }
+  .field-label {
+    @apply mb-1.5 block text-xs font-semibold uppercase tracking-wider text-brand-navy/70;
+  }
+  .field-input {
+    @apply w-full rounded-xl border border-brand-navy/15 bg-white px-4 py-3 text-sm text-brand-navy placeholder:text-brand-navy/40 transition focus:border-brand-teal focus:outline-none focus:ring-4 focus:ring-brand-teal/10;
+  }
+}
+
+.hero-gradient {
+  background:
+    radial-gradient(120% 80% at 80% 0%, rgba(31, 169, 161, 0.35) 0%, transparent 60%),
+    radial-gradient(80% 60% at 0% 100%, rgba(212, 162, 76, 0.18) 0%, transparent 60%),
+    linear-gradient(135deg, #0B2545 0%, #13315C 55%, #1E5F8C 100%);
+}
