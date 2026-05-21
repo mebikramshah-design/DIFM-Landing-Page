@@ -27,7 +27,8 @@ allows iframing (most do by default).
 3. Branch: `claude/fm-lead-generation-62pb8` (or whichever branch holds `docs/index.html`),
    folder: `/docs`.
 4. **Save.** URL appears within a minute as
-   `https://mebikramshah-design.github.io/difm-landing-page/`.
+   `https://mebikramshah-design.github.io/DIFM-Landing-Page/`
+   (GitHub Pages preserves the case of the repo name).
 
 Either way, open the URL in your browser to confirm the page renders
 before moving on.
