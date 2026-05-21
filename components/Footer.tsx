@@ -6,14 +6,30 @@ export default function Footer() {
     <footer className="bg-brand-navy text-white/80">
       <div className="container-x py-14 grid gap-10 lg:grid-cols-4">
         <div className="lg:col-span-2">
-          <div className="flex items-center gap-3">
+          <a href="#top" className="inline-flex items-center text-white">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/logo.png"
               alt="Darwish Interserve FM"
-              className="h-12 w-auto bg-white rounded-md p-1.5"
+              className="h-12 w-auto bg-white rounded-md p-1.5 hidden"
+              onLoad={(e) => {
+                e.currentTarget.classList.remove("hidden");
+                const svg = e.currentTarget.nextElementSibling as HTMLElement | null;
+                if (svg) svg.classList.add("hidden");
+              }}
+              onError={(e) => { e.currentTarget.remove(); }}
             />
-          </div>
+            <svg
+              className="h-12 w-auto"
+              viewBox="0 0 260 64"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-label="Darwish Interserve Facility Management"
+            >
+              <text x="0" y="26" fontFamily="Inter, ui-sans-serif, sans-serif" fontWeight="800" fontSize="24" letterSpacing="1.5" fill="#00afd7">DARWISH</text>
+              <text x="0" y="50" fontFamily="Inter, ui-sans-serif, sans-serif" fontWeight="800" fontSize="24" letterSpacing="1.5" fill="currentColor">INTERSERVE</text>
+              <text x="0" y="62" fontFamily="Inter, ui-sans-serif, sans-serif" fontWeight="500" fontSize="7" letterSpacing="1.6" fill="currentColor" opacity="0.7">FACILITY MANAGEMENT · W.L.L.</text>
+            </svg>
+          </a>
           <p className="mt-5 max-w-md text-sm">
             Integrated Facility Management Solutions across Qatar — Hard FM,
             Soft FM, MEP, cleaning, security and skilled manpower. Reliable,

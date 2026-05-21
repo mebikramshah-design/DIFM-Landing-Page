@@ -51,16 +51,15 @@
 <!-- NAVBAR -->
 <header id="nav" class="fixed inset-x-0 top-0 z-40 transition-all">
   <div class="container-x flex h-20 items-center justify-between">
-    <a href="#top" class="flex items-center gap-3">
-      <img src="logo.png" alt="Darwish Interserve FM" class="logo-img"
-           onerror="this.classList.add('broken')" />
-      <span class="logo-fallback items-center gap-2">
-        <span id="logoMark" class="grid h-10 w-10 place-items-center rounded-lg bg-white text-brand-navy font-black">DI</span>
-        <span id="logoText" class="hidden sm:block text-sm font-semibold leading-tight text-white">
-          Darwish Interserve
-          <span class="block text-[10px] font-medium uppercase tracking-[0.18em] opacity-70">Facility Management</span>
-        </span>
-      </span>
+    <a href="#top" class="brand-link flex items-center text-white">
+      <img src="logo.png" alt="Darwish Interserve FM" class="brand-png h-12 w-auto hidden"
+           onload="this.classList.remove('hidden'); this.nextElementSibling.classList.add('hidden')"
+           onerror="this.remove()" />
+      <svg class="brand-svg h-12 w-auto" viewBox="0 0 260 64" xmlns="http://www.w3.org/2000/svg" aria-label="Darwish Interserve Facility Management">
+        <text x="0" y="26" font-family="Inter, ui-sans-serif, sans-serif" font-weight="800" font-size="24" letter-spacing="1.5" fill="#00afd7">DARWISH</text>
+        <text x="0" y="50" font-family="Inter, ui-sans-serif, sans-serif" font-weight="800" font-size="24" letter-spacing="1.5" fill="currentColor">INTERSERVE</text>
+        <text x="0" y="62" font-family="Inter, ui-sans-serif, sans-serif" font-weight="500" font-size="7" letter-spacing="1.6" fill="currentColor" opacity="0.7">FACILITY MANAGEMENT · W.L.L.</text>
+      </svg>
     </a>
     <nav class="hidden md:flex items-center gap-7" id="navLinks">
       <a href="#about"    class="nav-link text-sm font-medium text-white/90 hover:text-brand-teal">About</a>
@@ -197,10 +196,17 @@
           <div class="relative grid flex-1 place-items-center bg-gradient-to-br from-brand-navy via-brand-deep to-brand-steel text-white">
             <div class="absolute inset-0 grid-overlay opacity-50"></div>
             <div class="relative z-10 px-8 text-center">
-              <img src="logo.png" alt="DIFM" class="mx-auto h-16 w-auto bg-white rounded-lg p-2"
-                   onerror="this.outerHTML='<div class=&quot;mx-auto grid h-14 w-14 place-items-center rounded-xl bg-brand-gold text-brand-navy text-xl font-black&quot;>DI</div>'"/>
-              <h3 class="mt-5 text-2xl font-semibold">Darwish Interserve FM</h3>
-              <p class="mt-2 text-sm text-white/70">Company Profile · Qatar · 2025</p>
+              <div class="brand-link inline-flex bg-white rounded-lg px-4 py-3 text-brand-navy">
+                <img src="logo.png" alt="Darwish Interserve FM" class="brand-png h-12 w-auto hidden"
+                     onload="this.classList.remove('hidden'); this.nextElementSibling.classList.add('hidden')"
+                     onerror="this.remove()" />
+                <svg class="brand-svg h-12 w-auto" viewBox="0 0 260 64" xmlns="http://www.w3.org/2000/svg" aria-label="Darwish Interserve">
+                  <text x="0" y="26" font-family="Inter, ui-sans-serif, sans-serif" font-weight="800" font-size="24" letter-spacing="1.5" fill="#00afd7">DARWISH</text>
+                  <text x="0" y="50" font-family="Inter, ui-sans-serif, sans-serif" font-weight="800" font-size="24" letter-spacing="1.5" fill="currentColor">INTERSERVE</text>
+                  <text x="0" y="62" font-family="Inter, ui-sans-serif, sans-serif" font-weight="500" font-size="7" letter-spacing="1.6" fill="currentColor" opacity="0.7">FACILITY MANAGEMENT · W.L.L.</text>
+                </svg>
+              </div>
+              <p class="mt-5 text-sm text-white/70">Company Profile · Qatar · 2025</p>
               <p class="mt-6 text-xs uppercase tracking-[0.2em] text-brand-gold">Reliable · Professional · 24/7</p>
             </div>
           </div>
@@ -414,10 +420,16 @@
 <footer class="bg-brand-navy text-white/80">
   <div class="container-x py-14 grid gap-10 lg:grid-cols-4">
     <div class="lg:col-span-2">
-      <div class="flex items-center gap-3">
-        <img src="logo.png" alt="Darwish Interserve FM" class="h-12 w-auto bg-white rounded-lg p-1.5"
-             onerror="this.outerHTML='<span class=&quot;grid h-9 w-9 place-items-center rounded-lg bg-brand-gold text-brand-navy font-black&quot;>DI</span>'"/>
-      </div>
+      <a href="#top" class="brand-link inline-flex items-center text-white">
+        <img src="logo.png" alt="Darwish Interserve FM" class="brand-png h-12 w-auto bg-white rounded-lg p-1.5 hidden"
+             onload="this.classList.remove('hidden'); this.nextElementSibling.classList.add('hidden')"
+             onerror="this.remove()" />
+        <svg class="brand-svg h-12 w-auto" viewBox="0 0 260 64" xmlns="http://www.w3.org/2000/svg" aria-label="Darwish Interserve Facility Management">
+          <text x="0" y="26" font-family="Inter, ui-sans-serif, sans-serif" font-weight="800" font-size="24" letter-spacing="1.5" fill="#00afd7">DARWISH</text>
+          <text x="0" y="50" font-family="Inter, ui-sans-serif, sans-serif" font-weight="800" font-size="24" letter-spacing="1.5" fill="currentColor">INTERSERVE</text>
+          <text x="0" y="62" font-family="Inter, ui-sans-serif, sans-serif" font-weight="500" font-size="7" letter-spacing="1.6" fill="currentColor" opacity="0.7">FACILITY MANAGEMENT · W.L.L.</text>
+        </svg>
+      </a>
       <p class="mt-5 max-w-md text-sm">Integrated Facility Management Solutions across Qatar — Hard FM, Soft FM, MEP, cleaning, security and skilled manpower. Reliable, professional and available 24/7.</p>
     </div>
     <div>
@@ -550,8 +562,10 @@
   startEl.addEventListener('change', recomputeEnd);
   periodEl.addEventListener('change', recomputeEnd);
 
-  // navbar scroll state
+  // navbar scroll state — the brand wordmark uses currentColor for the
+  // "INTERSERVE" line, so swapping the parent link's text color recolors it.
   const nav = document.getElementById('nav');
+  const navBrand = nav.querySelector('.brand-link');
   const setNav = () => {
     const scrolled = window.scrollY > 24;
     nav.classList.toggle('bg-white/95', scrolled);
@@ -563,15 +577,8 @@
     });
     document.getElementById('menuBtn').classList.toggle('text-white', !scrolled);
     document.getElementById('menuBtn').classList.toggle('text-brand-navy', scrolled);
-    const mark = document.getElementById('logoMark');
-    if (mark) {
-      mark.classList.toggle('bg-white', !scrolled);
-      mark.classList.toggle('text-brand-navy', !scrolled);
-      mark.classList.toggle('bg-brand-navy', scrolled);
-      mark.classList.toggle('text-white', scrolled);
-    }
-    const txt = document.getElementById('logoText');
-    if (txt) { txt.classList.toggle('text-white', !scrolled); txt.classList.toggle('text-brand-navy', scrolled); }
+    navBrand.classList.toggle('text-white', !scrolled);
+    navBrand.classList.toggle('text-brand-navy', scrolled);
   };
   setNav();
   window.addEventListener('scroll', setNav, { passive: true });

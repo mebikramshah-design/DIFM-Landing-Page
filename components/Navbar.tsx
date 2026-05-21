@@ -32,38 +32,32 @@ export default function Navbar() {
       }`}
     >
       <div className="container-x flex h-16 items-center justify-between">
-        <a href="#top" className="flex items-center gap-3">
+        <a
+          href="#top"
+          className={`flex items-center ${scrolled ? "text-brand-navy" : "text-white"}`}
+        >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/logo.png"
             alt="Darwish Interserve FM"
-            className={`h-10 w-auto ${scrolled ? "" : "bg-white rounded-md p-1"}`}
-            onError={(e) => {
-              (e.currentTarget as HTMLImageElement).style.display = "none";
-              const fb = (e.currentTarget.nextElementSibling as HTMLElement | null);
-              if (fb) fb.style.display = "flex";
+            className="h-12 w-auto hidden"
+            onLoad={(e) => {
+              e.currentTarget.classList.remove("hidden");
+              const svg = e.currentTarget.nextElementSibling as HTMLElement | null;
+              if (svg) svg.classList.add("hidden");
             }}
+            onError={(e) => { e.currentTarget.remove(); }}
           />
-          <span
-            style={{ display: "none" }}
-            className={`items-center gap-2 text-sm font-semibold leading-tight ${
-              scrolled ? "text-brand-navy" : "text-white"
-            }`}
+          <svg
+            className="h-12 w-auto"
+            viewBox="0 0 260 64"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-label="Darwish Interserve Facility Management"
           >
-            <span
-              className={`grid h-9 w-9 place-items-center rounded-lg font-black ${
-                scrolled ? "bg-brand-navy text-white" : "bg-white text-brand-navy"
-              }`}
-            >
-              DI
-            </span>
-            <span className="hidden sm:block">
-              Darwish Interserve
-              <span className="block text-[10px] font-medium uppercase tracking-[0.18em] opacity-70">
-                Facility Management
-              </span>
-            </span>
-          </span>
+            <text x="0" y="26" fontFamily="Inter, ui-sans-serif, sans-serif" fontWeight="800" fontSize="24" letterSpacing="1.5" fill="#00afd7">DARWISH</text>
+            <text x="0" y="50" fontFamily="Inter, ui-sans-serif, sans-serif" fontWeight="800" fontSize="24" letterSpacing="1.5" fill="currentColor">INTERSERVE</text>
+            <text x="0" y="62" fontFamily="Inter, ui-sans-serif, sans-serif" fontWeight="500" fontSize="7" letterSpacing="1.6" fill="currentColor" opacity="0.7">FACILITY MANAGEMENT · W.L.L.</text>
+          </svg>
         </a>
 
         <nav className="hidden md:flex items-center gap-7">
