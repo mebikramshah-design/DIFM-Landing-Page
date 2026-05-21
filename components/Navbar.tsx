@@ -32,22 +32,36 @@ export default function Navbar() {
       }`}
     >
       <div className="container-x flex h-16 items-center justify-between">
-        <a href="#top" className="flex items-center gap-2">
+        <a href="#top" className="flex items-center gap-3">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/logo.png"
+            alt="Darwish Interserve FM"
+            className={`h-10 w-auto ${scrolled ? "" : "bg-white rounded-md p-1"}`}
+            onError={(e) => {
+              (e.currentTarget as HTMLImageElement).style.display = "none";
+              const fb = (e.currentTarget.nextElementSibling as HTMLElement | null);
+              if (fb) fb.style.display = "flex";
+            }}
+          />
           <span
-            className={`grid h-9 w-9 place-items-center rounded-lg font-black ${
-              scrolled ? "bg-brand-navy text-white" : "bg-white text-brand-navy"
-            }`}
-          >
-            DI
-          </span>
-          <span
-            className={`hidden sm:block text-sm font-semibold leading-tight ${
+            style={{ display: "none" }}
+            className={`items-center gap-2 text-sm font-semibold leading-tight ${
               scrolled ? "text-brand-navy" : "text-white"
             }`}
           >
-            Darwish Interserve
-            <span className="block text-[10px] font-medium uppercase tracking-[0.18em] opacity-70">
-              Facility Management
+            <span
+              className={`grid h-9 w-9 place-items-center rounded-lg font-black ${
+                scrolled ? "bg-brand-navy text-white" : "bg-white text-brand-navy"
+              }`}
+            >
+              DI
+            </span>
+            <span className="hidden sm:block">
+              Darwish Interserve
+              <span className="block text-[10px] font-medium uppercase tracking-[0.18em] opacity-70">
+                Facility Management
+              </span>
             </span>
           </span>
         </a>

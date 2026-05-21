@@ -6,16 +6,13 @@ export default function Footer() {
     <footer className="bg-brand-navy text-white/80">
       <div className="container-x py-14 grid gap-10 lg:grid-cols-4">
         <div className="lg:col-span-2">
-          <div className="flex items-center gap-2">
-            <span className="grid h-9 w-9 place-items-center rounded-lg bg-brand-gold text-brand-navy font-black">
-              DI
-            </span>
-            <div className="text-sm font-semibold leading-tight text-white">
-              Darwish Interserve
-              <span className="block text-[10px] font-medium uppercase tracking-[0.18em] text-white/60">
-                Facility Management
-              </span>
-            </div>
+          <div className="flex items-center gap-3">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo.png"
+              alt="Darwish Interserve FM"
+              className="h-12 w-auto bg-white rounded-md p-1.5"
+            />
           </div>
           <p className="mt-5 max-w-md text-sm">
             Integrated Facility Management Solutions across Qatar — Hard FM,
