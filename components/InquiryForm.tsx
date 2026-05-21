@@ -25,6 +25,26 @@ const servicesByCategory: Record<string, string[]> = {
   "Other": ["Specify in details"]
 };
 
+const contractPeriods: { label: string; months: number | null }[] = [
+  { label: "3 Months",  months: 3 },
+  { label: "6 Months",  months: 6 },
+  { label: "1 Year",    months: 12 },
+  { label: "2 Years",   months: 24 },
+  { label: "3 Years",   months: 36 },
+  { label: "5 Years",   months: 60 },
+  { label: "Other (specify in details)", months: null }
+];
+
+function addMonthsISO(startISO: string, months: number): string {
+  const d = new Date(startISO);
+  if (Number.isNaN(d.getTime())) return "";
+  const day = d.getDate();
+  d.setMonth(d.getMonth() + months);
+  if (d.getDate() < day) d.setDate(0);
+  const p = (n: number) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
+}
+
 type Status =
   | { kind: "idle" }
   | { kind: "loading" }
@@ -33,7 +53,18 @@ type Status =
 
 export default function InquiryForm() {
   const [category, setCategory] = useState<string>("");
+  const [startDate, setStartDate] = useState<string>("");
+  const [contractPeriod, setContractPeriod] = useState<string>("");
+  const [contractEnd, setContractEnd] = useState<string>("");
+  const [contractEndTouched, setContractEndTouched] = useState(false);
   const [status, setStatus] = useState<Status>({ kind: "idle" });
+
+  function recomputeEnd(nextStart: string, nextPeriod: string) {
+    if (contractEndTouched) return;
+    const months = contractPeriods.find((p) => p.label === nextPeriod)?.months;
+    if (nextStart && months) setContractEnd(addMonthsISO(nextStart, months));
+    else setContractEnd("");
+  }
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -48,6 +79,10 @@ export default function InquiryForm() {
       setStatus({ kind: "success", ref: data.reference });
       form.reset();
       setCategory("");
+      setStartDate("");
+      setContractPeriod("");
+      setContractEnd("");
+      setContractEndTouched(false);
     } catch (err: any) {
       setStatus({ kind: "error", message: err?.message || "Something went wrong" });
     }
@@ -171,9 +206,60 @@ export default function InquiryForm() {
             </div>
             <div>
               <label className="field-label" htmlFor="startDate">Preferred Start Date</label>
-              <input id="startDate" name="startDate" type="date" className="field-input" />
+              <input
+                id="startDate"
+                name="startDate"
+                type="date"
+                className="field-input"
+                value={startDate}
+                onChange={(e) => {
+                  setStartDate(e.target.value);
+                  recomputeEnd(e.target.value, contractPeriod);
+                }}
+              />
             </div>
             <div>
+              <label className="field-label" htmlFor="contractPeriod">Contract Period</label>
+              <select
+                id="contractPeriod"
+                name="contractPeriod"
+                className="field-input"
+                value={contractPeriod}
+                onChange={(e) => {
+                  setContractPeriod(e.target.value);
+                  recomputeEnd(startDate, e.target.value);
+                }}
+              >
+                <option value="">Select period…</option>
+                {contractPeriods.map((p) => (
+                  <option key={p.label} value={p.label}>{p.label}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="field-label" htmlFor="gracePeriodEnd">Grace Period End Date</label>
+              <input id="gracePeriodEnd" name="gracePeriodEnd" type="date" className="field-input" />
+            </div>
+            <div>
+              <label className="field-label" htmlFor="contractEnd">Contract End Date</label>
+              <input
+                id="contractEnd"
+                name="contractEnd"
+                type="date"
+                className="field-input"
+                value={contractEnd}
+                onChange={(e) => {
+                  setContractEndTouched(true);
+                  setContractEnd(e.target.value);
+                }}
+              />
+              {!contractEndTouched && startDate && contractPeriod && contractEnd && (
+                <p className="mt-1 text-[11px] text-brand-navy/50">
+                  Auto-calculated from start date and contract period. You can override it.
+                </p>
+              )}
+            </div>
+            <div className="sm:col-span-2">
               <label className="field-label" htmlFor="attachment">Attachment (PDF, DOCX, JPG, PNG · max 10MB)</label>
               <input
                 id="attachment"

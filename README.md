@@ -54,6 +54,9 @@ create table public.inquiries (
   location      text,
   manpower      int,
   start_date    date,
+  contract_period   text,
+  grace_period_end  date,
+  contract_end      date,
   details       text not null,
   attachment    jsonb,
   submitted_at  timestamptz not null default now()

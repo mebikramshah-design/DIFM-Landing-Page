@@ -62,6 +62,9 @@ export async function POST(req: NextRequest) {
     const location = String(fd.get("location") || "").trim();
     const manpower = String(fd.get("manpower") || "").trim();
     const startDate = String(fd.get("startDate") || "").trim();
+    const contractPeriod = String(fd.get("contractPeriod") || "").trim();
+    const gracePeriodEnd = String(fd.get("gracePeriodEnd") || "").trim();
+    const contractEnd = String(fd.get("contractEnd") || "").trim();
 
     const attachment = fd.get("attachment") as File | null;
     let attachmentMeta: { name: string; size: number; type: string } | null = null;
@@ -99,6 +102,9 @@ export async function POST(req: NextRequest) {
           location: location || null,
           manpower: manpower ? Number(manpower) : null,
           start_date: startDate || null,
+          contract_period: contractPeriod || null,
+          grace_period_end: gracePeriodEnd || null,
+          contract_end: contractEnd || null,
           details,
           attachment: attachmentMeta,
           submitted_at: submittedAt
@@ -133,6 +139,9 @@ export async function POST(req: NextRequest) {
             ${row("Location", location)}
             ${row("Manpower", manpower)}
             ${row("Preferred Start Date", startDate)}
+            ${row("Contract Period", contractPeriod)}
+            ${row("Grace Period End Date", gracePeriodEnd)}
+            ${row("Contract End Date", contractEnd)}
             ${row("Submitted At", submittedAt)}
             <tr><td colspan="2" style="padding:14px 12px;color:#0B2545;font-weight:600;background:#F4F1EB">Requirement Details</td></tr>
             <tr><td colspan="2" style="padding:12px;color:#13315C;white-space:pre-wrap">${escapeHtml(details)}</td></tr>

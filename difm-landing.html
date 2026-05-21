@@ -326,6 +326,30 @@
           <input id="startDate" name="startDate" type="date" class="field-input" />
         </div>
         <div>
+          <label class="field-label" for="contractPeriod">Contract Period</label>
+          <select id="contractPeriod" name="contractPeriod" class="field-input">
+            <option value="">Select period…</option>
+            <option value="3 Months">3 Months</option>
+            <option value="6 Months">6 Months</option>
+            <option value="1 Year">1 Year</option>
+            <option value="2 Years">2 Years</option>
+            <option value="3 Years">3 Years</option>
+            <option value="5 Years">5 Years</option>
+            <option value="Other">Other (specify in details)</option>
+          </select>
+        </div>
+        <div>
+          <label class="field-label" for="gracePeriodEnd">Grace Period End Date</label>
+          <input id="gracePeriodEnd" name="gracePeriodEnd" type="date" class="field-input" />
+        </div>
+        <div>
+          <label class="field-label" for="contractEnd">Contract End Date</label>
+          <input id="contractEnd" name="contractEnd" type="date" class="field-input" />
+          <p id="contractEndHint" class="hidden mt-1 text-[11px] text-brand-navy/50">
+            Auto-calculated from start date and contract period. You can override it.
+          </p>
+        </div>
+        <div class="sm:col-span-2">
           <label class="field-label" for="attachment">Attachment (PDF, DOCX, JPG, PNG · max 10MB)</label>
           <input id="attachment" name="attachment" type="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" class="field-input" />
         </div>
@@ -502,6 +526,30 @@
       + opts.map(o => `<option>${o}</option>`).join('');
   });
 
+  // Contract end date auto-calculation from start date + contract period.
+  const startEl    = document.getElementById('startDate');
+  const periodEl   = document.getElementById('contractPeriod');
+  const endEl      = document.getElementById('contractEnd');
+  const endHintEl  = document.getElementById('contractEndHint');
+  const periodMonths = { '3 Months':3, '6 Months':6, '1 Year':12, '2 Years':24, '3 Years':36, '5 Years':60 };
+  let endTouched = false;
+  endEl.addEventListener('input', () => { endTouched = true; endHintEl.classList.add('hidden'); });
+  function recomputeEnd() {
+    if (endTouched) return;
+    const months = periodMonths[periodEl.value];
+    if (!startEl.value || !months) { endEl.value = ''; endHintEl.classList.add('hidden'); return; }
+    const d = new Date(startEl.value);
+    if (isNaN(d.getTime())) return;
+    const day = d.getDate();
+    d.setMonth(d.getMonth() + months);
+    if (d.getDate() < day) d.setDate(0);
+    const p = n => String(n).padStart(2,'0');
+    endEl.value = `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}`;
+    endHintEl.classList.remove('hidden');
+  }
+  startEl.addEventListener('change', recomputeEnd);
+  periodEl.addEventListener('change', recomputeEnd);
+
   // navbar scroll state
   const nav = document.getElementById('nav');
   const setNav = () => {
@@ -583,6 +631,9 @@
       `Location: ${fd.get('location')||'-'}`,
       `Manpower: ${fd.get('manpower')||'-'}`,
       `Preferred Start: ${fd.get('startDate')||'-'}`,
+      `Contract Period: ${fd.get('contractPeriod')||'-'}`,
+      `Grace Period End: ${fd.get('gracePeriodEnd')||'-'}`,
+      `Contract End: ${fd.get('contractEnd')||'-'}`,
       '',
       'Requirement:',
       details
@@ -600,6 +651,8 @@
     form.reset();
     svcEl.disabled = true;
     svcEl.innerHTML = '<option value="">Choose a category first</option>';
+    endTouched = false;
+    endHintEl.classList.add('hidden');
     successPanel.classList.add('hidden');
     form.classList.remove('hidden');
     form.scrollIntoView({ behavior: 'smooth', block: 'start' });
