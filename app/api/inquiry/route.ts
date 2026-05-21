@@ -117,7 +117,7 @@ export async function POST(req: NextRequest) {
     if (process.env.RESEND_API_KEY) {
       const resend = new Resend(process.env.RESEND_API_KEY);
       const from = process.env.INQUIRY_FROM_EMAIL || "DIFM Website <noreply@difm.qa>";
-      const to = (process.env.INQUIRY_TO_EMAILS || "sales@difm.qa")
+      const to = (process.env.INQUIRY_TO_EMAILS || "bikram.shah@darwishinterserve.com")
         .split(",")
         .map((s) => s.trim())
         .filter(Boolean);
@@ -171,7 +171,7 @@ export async function POST(req: NextRequest) {
             <p>Dear ${escapeHtml(fullName)},</p>
             <p>Thank you for contacting <strong>Darwish Interserve Facility Management</strong>. Our team has received your request and will contact you shortly.</p>
             <p>Your reference number is <strong>${reference}</strong>. Please retain it for any future correspondence.</p>
-            <p style="margin-top:24px">Warm regards,<br/>The DIFM Team<br/><a href="mailto:sales@difm.qa">sales@difm.qa</a></p>
+            <p style="margin-top:24px">Warm regards,<br/>The DIFM Team<br/><a href="mailto:bikram.shah@darwishinterserve.com">bikram.shah@darwishinterserve.com</a></p>
           </div>
         `
       });
@@ -185,7 +185,7 @@ export async function POST(req: NextRequest) {
   } catch (err: any) {
     console.error("Inquiry route error:", err);
     return NextResponse.json(
-      { error: "Could not submit your inquiry. Please try again or email sales@difm.qa." },
+      { error: "Could not submit your inquiry. Please try again or email bikram.shah@darwishinterserve.com." },
       { status: 500 }
     );
   }

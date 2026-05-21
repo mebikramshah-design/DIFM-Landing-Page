@@ -52,8 +52,8 @@ export default function Footer() {
           <h4 className="text-sm font-semibold text-white">Contact</h4>
           <ul className="mt-4 space-y-3 text-sm">
             <li className="flex items-start gap-2"><MapPin size={14} className="mt-0.5" /> Doha, Qatar</li>
-            <li className="flex items-start gap-2"><Phone size={14} className="mt-0.5" /> +974 4400 0000</li>
-            <li className="flex items-start gap-2"><Mail size={14} className="mt-0.5" /> sales@difm.qa</li>
+            <li className="flex items-start gap-2"><Phone size={14} className="mt-0.5" /> +974 4416 7155</li>
+            <li className="flex items-start gap-2"><Mail size={14} className="mt-0.5" /> bikram.shah@darwishinterserve.com</li>
           </ul>
         </div>
       </div>

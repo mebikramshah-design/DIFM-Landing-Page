@@ -137,12 +137,12 @@ export default function InquiryForm() {
             <p className="text-sm font-semibold">Prefer to talk?</p>
             <p className="mt-1 text-sm text-brand-navy/70">
               Call our sales line on{" "}
-              <a className="font-semibold text-brand-teal" href="tel:+97444000000">
-                +974 4400 0000
+              <a className="font-semibold text-brand-teal" href="tel:+97444167155">
+                +974 4416 7155
               </a>{" "}
               or email{" "}
-              <a className="font-semibold text-brand-teal" href="mailto:sales@difm.qa">
-                sales@difm.qa
+              <a className="font-semibold text-brand-teal" href="mailto:bikram.shah@darwishinterserve.com">
+                bikram.shah@darwishinterserve.com
               </a>
               .
             </p>

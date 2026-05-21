@@ -2,8 +2,8 @@ import { Mail, MapPin, Phone, Clock } from "lucide-react";
 
 const items = [
   { icon: MapPin, title: "Office", body: "Doha, Qatar" },
-  { icon: Phone,  title: "Phone",  body: "+974 4400 0000" },
-  { icon: Mail,   title: "Email",  body: "sales@difm.qa" },
+  { icon: Phone,  title: "Phone",  body: "+974 4416 7155" },
+  { icon: Mail,   title: "Email",  body: "bikram.shah@darwishinterserve.com" },
   { icon: Clock,  title: "Hours",  body: "24/7 Operations" }
 ];
 
