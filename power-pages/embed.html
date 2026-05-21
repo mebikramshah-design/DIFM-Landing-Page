@@ -1,0 +1,42 @@
+<!--
+  Darwish Interserve FM · Power Pages embed
+  ─────────────────────────────────────────
+  Paste the markup below into a Power Pages custom (HTML) page
+  via Design Studio → Pages → (new page) → Source / Code view (</>).
+  Replace YOUR_HOST_URL with the URL where you host docs/index.html
+  (Azure Static Web Apps, GitHub Pages, or any static host).
+-->
+
+<style>
+  .difm-embed {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 0px);
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  .difm-embed iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+  /* Optional: tighten the Power Pages page wrapper around the iframe.
+     Selectors differ slightly per site template — uncomment what applies
+     after inspecting your site in browser devtools. */
+  /*
+  main, .page-section, .container, .row { margin: 0 !important; padding: 0 !important; max-width: 100% !important; }
+  */
+</style>
+
+<div class="difm-embed">
+  <iframe
+    src="https://YOUR_HOST_URL/index.html"
+    title="Darwish Interserve Facility Management"
+    loading="eager"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allow="clipboard-write; geolocation"
+    sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-popups-to-escape-sandbox">
+  </iframe>
+</div>
