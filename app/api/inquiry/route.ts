@@ -114,6 +114,10 @@ export async function POST(req: NextRequest) {
       }
     }
 
+    let teamEmailId: string | null = null;
+    let userEmailId: string | null = null;
+    let emailError: string | null = null;
+
     if (process.env.RESEND_API_KEY) {
       const resend = new Resend(process.env.RESEND_API_KEY);
       const from = process.env.INQUIRY_FROM_EMAIL || "DIFM Website <noreply@difm.qa>";
@@ -160,9 +164,17 @@ export async function POST(req: NextRequest) {
       if (attachmentBuffer && attachmentMeta) {
         teamPayload.attachments = [{ filename: attachmentMeta.name, content: attachmentBuffer }];
       }
-      await resend.emails.send(teamPayload);
 
-      await resend.emails.send({
+      const teamResult = await resend.emails.send(teamPayload);
+      if (teamResult.error) {
+        emailError = `team: ${teamResult.error.name} — ${teamResult.error.message}`;
+        console.error(`[DIFM inquiry ${reference}] team email failed:`, teamResult.error);
+      } else {
+        teamEmailId = teamResult.data?.id ?? null;
+        console.log(`[DIFM inquiry ${reference}] team email sent (id=${teamEmailId}, to=${to.join(",")})`);
+      }
+
+      const userResult = await resend.emails.send({
         from,
         to: email,
         subject: `We've received your request — DIFM (${reference})`,
@@ -175,13 +187,29 @@ export async function POST(req: NextRequest) {
           </div>
         `
       });
+      if (userResult.error) {
+        emailError = (emailError ? emailError + " | " : "") + `user: ${userResult.error.name} — ${userResult.error.message}`;
+        console.error(`[DIFM inquiry ${reference}] user confirmation email failed:`, userResult.error);
+      } else {
+        userEmailId = userResult.data?.id ?? null;
+        console.log(`[DIFM inquiry ${reference}] user confirmation sent (id=${userEmailId}, to=${email})`);
+      }
     } else {
-      console.log("[DIFM inquiry] (no RESEND_API_KEY) submission:", {
-        reference, fullName, email, phone, category, service, details
-      });
+      emailError = "RESEND_API_KEY not configured";
+      console.warn(
+        `[DIFM inquiry ${reference}] EMAIL DISABLED — RESEND_API_KEY missing. Submission saved but no notification sent.`,
+        { fullName, email, phone, category }
+      );
     }
 
-    return NextResponse.json({ ok: true, reference });
+    return NextResponse.json({
+      ok: true,
+      reference,
+      emailed: !emailError,
+      emailError: emailError || undefined,
+      teamEmailId,
+      userEmailId
+    });
   } catch (err: any) {
     console.error("Inquiry route error:", err);
     return NextResponse.json(
